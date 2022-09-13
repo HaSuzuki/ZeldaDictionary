@@ -8,17 +8,16 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.view.ViewTreeObserver
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import com.suzukiha.zeldadictionary.R
 import com.suzukiha.zeldadictionary.databinding.ActivityMainBinding
 import com.suzukiha.zeldadictionary.viewmodel.MainActivityModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//      retrofit利用時に使用
+//      ml translate 利用時に使用
 //        val content: View = findViewById(android.R.id.content)
 //        content.viewTreeObserver.addOnPreDrawListener(
 //            object : ViewTreeObserver.OnPreDrawListener {

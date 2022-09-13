@@ -3,7 +3,9 @@ package com.suzukiha.zeldadictionary
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.FirebaseApp
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class App: Application() {
 
     override fun onCreate() {

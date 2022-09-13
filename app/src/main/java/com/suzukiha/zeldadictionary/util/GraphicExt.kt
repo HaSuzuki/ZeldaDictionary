@@ -23,7 +23,9 @@ fun CornerRounding.toFloatArray(): FloatArray {
 }
 
 fun ShapeAppearanceModel?.toCornerRounding(bounds: RectF): CornerRounding {
-    if (this == null) return CornerRounding()
+    if (this == null) {
+        return CornerRounding()
+    }
     return CornerRounding(
         topLeftCornerSize.getCornerSize(bounds),
         topRightCornerSize.getCornerSize(bounds),

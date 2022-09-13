@@ -12,16 +12,21 @@ import com.suzukiha.zeldaapiclient.firestoredata.Game
 import com.suzukiha.zeldaapiclient.firestoredata.Language
 import com.suzukiha.zeldaapiclient.firestoredata.Staff
 import com.suzukiha.zeldaapiclient.retrofit.ZeldaFunctions
+import com.suzukiha.zeldadictionary.FirebaseConst
+import com.suzukiha.zeldadictionary.di.ApplicationScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class ZeldaRepository(
+@Singleton
+class ZeldaRepository @Inject constructor(
     private val zeldaRemoteDataSource: ZeldaRemoteDataSource,
     private val firestore: FirebaseFirestore = Firebase.firestore,
-    private val externalScope: CoroutineScope =
+    @ApplicationScope private val externalScope: CoroutineScope =
         CoroutineScope(SupervisorJob() + Dispatchers.IO)
 ) {
 
@@ -64,25 +69,25 @@ class ZeldaRepository(
     }
 
     fun fetchGamesFromFirestore() {
-        firestore.collection(COLLECTION_PATH_GAME)
-            .orderBy("id", Query.Direction.ASCENDING)
+        firestore.collection(FirebaseConst.COLLECTIONPATH.GAME)
+            .orderBy(FirebaseConst.FIELD.ID, Query.Direction.ASCENDING)
             .get()
             .addOnSuccessListener { documents ->
                 val list = documents.map {
                     Game(
-                        id = it.getLong("id")!!,
+                        id = it.getLong(FirebaseConst.FIELD.ID)!!,
                         name = Language(
-                            en = it.getString("name.en"),
-                            ja = it.getString("name.ja"),
-                            zh = it.getString("name.zh")
+                            en = it.getString(FirebaseConst.FIELD.NAME_ENGLISH),
+                            ja = it.getString(FirebaseConst.FIELD.NAME_JAPANESE),
+                            zh = it.getString(FirebaseConst.FIELD.NAME_CHINESE)
                         ),
                         description = Language(
-                            en = it.getString("description.en"),
-                            ja = it.getString("description.ja"),
-                            zh = it.getString("description.zh")
+                            en = it.getString(FirebaseConst.FIELD.DESCRIPTION_ENGLISH),
+                            ja = it.getString(FirebaseConst.FIELD.DESCRIPTION_JAPANESE),
+                            zh = it.getString(FirebaseConst.FIELD.DESCRIPTION_CHINESE)
                         ),
-                        thumbnailUrl = it.getString("thumbnailUrl"),
-                        releaseDate = it.getString("releaseDate")
+                        thumbnailUrl = it.getString(FirebaseConst.FIELD.THUMBNAIL_URL),
+                        releaseDate = it.getString(FirebaseConst.FIELD.RELEASE_DATE)
                     )
                 }
                 _gamesFromFirestore.postValue(ZeldaFirestoreFunctions.GamesState.Success(list))
@@ -93,25 +98,25 @@ class ZeldaRepository(
     }
 
     fun fetchGamesFromFirestore(gameIdList: ArrayList<Int>) {
-        firestore.collection(COLLECTION_PATH_GAME)
-            .whereIn("id", gameIdList)
+        firestore.collection(FirebaseConst.COLLECTIONPATH.GAME)
+            .whereIn(FirebaseConst.FIELD.ID, gameIdList)
             .get()
             .addOnSuccessListener { documents ->
                 val list = documents.map {
                     Game(
-                        id = it.getLong("id")!!,
+                        id = it.getLong(FirebaseConst.FIELD.ID)!!,
                         name = Language(
-                            en = it.getString("name.en"),
-                            ja = it.getString("name.ja"),
-                            zh = it.getString("name.zh")
+                            en = it.getString(FirebaseConst.FIELD.NAME_ENGLISH),
+                            ja = it.getString(FirebaseConst.FIELD.NAME_JAPANESE),
+                            zh = it.getString(FirebaseConst.FIELD.NAME_CHINESE)
                         ),
                         description = Language(
-                            en = it.getString("description.en"),
-                            ja = it.getString("description.ja"),
-                            zh = it.getString("description.zh")
+                            en = it.getString(FirebaseConst.FIELD.DESCRIPTION_ENGLISH),
+                            ja = it.getString(FirebaseConst.FIELD.DESCRIPTION_JAPANESE),
+                            zh = it.getString(FirebaseConst.FIELD.DESCRIPTION_CHINESE)
                         ),
-                        thumbnailUrl = it.getString("thumbnailUrl"),
-                        releaseDate = it.getString("releaseDate")
+                        thumbnailUrl = it.getString(FirebaseConst.FIELD.THUMBNAIL_URL),
+                        releaseDate = it.getString(FirebaseConst.FIELD.RELEASE_DATE)
                     )
                 }
                 externalScope.launch {
@@ -126,19 +131,19 @@ class ZeldaRepository(
     }
 
     fun fetchStaffsFromFirestore(gameId: Number) {
-        firestore.collection(COLLECTION_PATH_STAFF)
-            .whereArrayContains("workedOnGameId", gameId)
+        firestore.collection(FirebaseConst.COLLECTIONPATH.STAFF)
+            .whereArrayContains(FirebaseConst.FIELD.WORKED_ON_GAME_ID, gameId)
             .get()
             .addOnSuccessListener { documents ->
                 val list = documents.map {
                     Staff(
-                        id = it.getLong("id")!!,
+                        id = it.getLong(FirebaseConst.FIELD.ID)!!,
                         name = Language(
-                            en = it.getString("name.en"),
-                            ja = it.getString("name.ja"),
-                            zh = it.getString("name.zh")
+                            en = it.getString(FirebaseConst.FIELD.NAME_ENGLISH),
+                            ja = it.getString(FirebaseConst.FIELD.NAME_JAPANESE),
+                            zh = it.getString(FirebaseConst.FIELD.NAME_CHINESE)
                         ),
-                        workedOnGameId = it.get("workedOnGameId") as ArrayList<Int>
+                        workedOnGameId = it.get(FirebaseConst.FIELD.WORKED_ON_GAME_ID) as ArrayList<Int>
                     )
                 }
                 _staffsFromFirestore.postValue(ZeldaFirestoreFunctions.StaffState.Success(list))
@@ -218,10 +223,5 @@ class ZeldaRepository(
             page = page,
             limit = limit
         )
-    }
-
-    companion object {
-        private const val COLLECTION_PATH_GAME = "games"
-        private const val COLLECTION_PATH_STAFF = "staffs"
     }
 }

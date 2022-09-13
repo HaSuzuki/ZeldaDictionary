@@ -1,4 +1,5 @@
 [versions]
+androidApplication = "7.2.2"
 androidxAppCompat = "1.4.2"
 androidxConstraintlayout = "2.1.4"
 androidxCore = "1.8.0"
@@ -7,23 +8,32 @@ androidxTestJUnit = "1.1.3"
 androidxTestEsporesso = "3.4.0"
 androidxSwipeRefreshLayout = "1.1.0"
 androidxSplashScreen = "1.0.0-rc01"
-androidBuildGradle = "3.4.3"
+androidBuildGradle = "7.2.2"
 coil = "2.1.0"
 firebaseBoM = "30.3.1"
 firebaseCrashlyticsGradle = "2.9.1"
 gmsGoogleService = "4.3.13"
+hilt = "2.42"
 junit = "4.13.2"
-kotlin = "1.7.0"
+kotlin = "1.7.10"
+kotlinCompilerExt = "1.3.0"
 kotlinxCoroutines = "1.6.3"
 material3 = "1.6.1"
 mlkitTranslate = "17.0.0"
 retrofit2 = "2.9.0"
 okhttp3 = "4.9.2"
 shimmer = "0.5.0"
+compose = "1.2.1"
+compose-activity = "1.5.1"
+compose-constraint-layout = "1.0.1"
+compose-material3 = "1.0.0-alpha16"
+compose-viewmodel = "2.5.1"
+compose-mdc-theme = "1.1.16"
+viewBinding = "7.2.1"
 
-compileSdk = "32"
+compileSdk = "33"
 minSdk = "23"
-targetSdk = "32"
+targetSdk = "33"
 versionCode = "1"
 versionName = "1.0"
 
@@ -38,11 +48,28 @@ androidx-test-espresso = { group = "androidx.test.espresso", name = "espresso-co
 androidx-swipe-refresh-layout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "androidxSwipeRefreshLayout" }
 androidx-splash-screen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidxSplashScreen" }
 coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+androidx-compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "compose-activity" }
+androidx-compose-constraint-layout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "compose-constraint-layout" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "compose-material3" }
+androidx-compose-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "compose" }
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "compose" }
+androidx-compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "compose" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "compose" }
+androidx-compose-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "compose-viewmodel" }
+androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose" }
+androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref = "compose" }
+androidx-compose-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "compose" }
+androidx-compose-mdc-theme = { group = "com.google.android.material", name = "compose-theme-adapter", version.ref = "compose-mdc-theme" }
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBoM" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics-ktx" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore-ktx" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+hilt-android = {group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = {group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 material3 = { group = "com.google.android.material", name = "material", version.ref = "material3" }
 mlkit-translate = { group = "com.google.mlkit", name = "translate", version.ref = "mlkitTranslate" }
@@ -51,7 +78,14 @@ retrofit2-converter-gson = { group = "com.squareup.retrofit2", name = "converter
 retrofit2-converter-scalars = { group = "com.squareup.retrofit2", name = "converter-scalars", version.ref = "retrofit2" }
 okhttp3-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3" }
 shimmer = { group = "com.facebook.shimmer", name = "shimmer", version.ref = "shimmer" }
+view-binding = { group = "com.android.databinding", name = "viewbinding", version.ref = "viewBinding" }
 
 [bundles]
 androidx-navigation = ["androidx-navigation-fragment", "androidx-navigation-ui-ktx"]
 retrofit2-suite = ["retrofit2-retrofit", "retrofit2-converter-gson", "retrofit2-converter-scalars"]
+
+[plugins]
+kotlin-core = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+application = { id = "com.android.application", version.ref = "androidApplication" }
+library = { id = "com.android.library", version.ref = "androidApplication" }
+safeargs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "androidxNavigation" }

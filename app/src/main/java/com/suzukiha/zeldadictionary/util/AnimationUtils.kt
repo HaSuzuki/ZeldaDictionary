@@ -73,8 +73,12 @@ fun lerp(
     @FloatRange(from = 0.0, fromInclusive = true, to = 1.0, toInclusive = true) endFraction: Float,
     @FloatRange(from = 0.0, fromInclusive = true, to = 1.0, toInclusive = true) fraction: Float
 ): Float {
-    if (fraction < startFraction) return startValue
-    if (fraction > endFraction) return endValue
+    if (fraction < startFraction) {
+        return startValue
+    }
+    if (fraction > endFraction) {
+        return endValue
+    }
 
     return lerp(startValue, endValue, (fraction - startFraction) / (endFraction - startFraction))
 }
@@ -92,8 +96,12 @@ fun lerp(
     @FloatRange(from = 0.0, fromInclusive = true, to = 1.0, toInclusive = true) endFraction: Float,
     @FloatRange(from = 0.0, fromInclusive = true, to = 1.0, toInclusive = true) fraction: Float
 ): Int {
-    if (fraction < startFraction) return startValue
-    if (fraction > endFraction) return endValue
+    if (fraction < startFraction) {
+        return startValue
+    }
+    if (fraction > endFraction) {
+        return endValue
+    }
 
     return lerp(startValue, endValue, (fraction - startFraction) / (endFraction - startFraction))
 }
@@ -110,8 +118,12 @@ fun lerp(
     @FloatRange(from = 0.0, fromInclusive = true, to = 1.0, toInclusive = true) endFraction: Float,
     @FloatRange(from = 0.0, fromInclusive = true, to = 1.0, toInclusive = true) fraction: Float
 ): CornerRounding {
-    if (fraction < startFraction) return startValue
-    if (fraction > endFraction) return endValue
+    if (fraction < startFraction) {
+        return startValue
+    }
+    if (fraction > endFraction) {
+        return endValue
+    }
 
     return CornerRounding(
         lerp(
@@ -171,8 +183,12 @@ fun lerpArgb(
     @FloatRange(from = 0.0, fromInclusive = true, to = 1.0, toInclusive = true) endFraction: Float,
     @FloatRange(from = 0.0, fromInclusive = true, to = 1.0, toInclusive = true) fraction: Float
 ): Int {
-    if (fraction < startFraction) return startColor
-    if (fraction > endFraction) return endColor
+    if (fraction < startFraction) {
+        return startColor
+    }
+    if (fraction > endFraction) {
+        return endColor
+    }
 
     return lerpArgb(
         startColor,
