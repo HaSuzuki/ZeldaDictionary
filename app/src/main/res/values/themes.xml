@@ -1,0 +1,51 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/avd_splash</item>
+        <item name="windowSplashScreenAnimationDuration">900</item>
+        <item name="postSplashScreenTheme">@style/Theme.ZeldaDictionary</item>
+    </style>
+
+    <style name="Base.Theme.ZeldaDictionary" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="android:navigationBarColor">@color/nav_bar</item>
+        <item name="android:statusBarColor">@color/immersive_system_ui</item>
+    </style>
+
+    <style name="Theme.ZeldaDictionary" parent="Base.Theme.ZeldaDictionary" />
+
+    <style name="Theme.ZeldaDictionary.Green">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary</item>
+    </style>
+
+    <style name="ThemeOverlay.ZeldaDictionary.Green.DynamicColor" parent="@style/ThemeOverlay.Material3.DynamicColors.DayNight">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="Item">
+        <item name="android:background">@color/white</item>
+        <item name="colorOnPrimary">@color/primary</item>
+    </style>
+
+    <style name="ToolbarTitle" parent="@style/Base.TextAppearance.AppCompat.Title">
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/hylia_serif_beta_regular</item>
+    </style>
+
+    <style name="StaffBottomSheetDialogTheme" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/StaffDialogStyle</item>
+    </style>
+    <style name="StaffDialogStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_dialog</item>
+    </style>
+
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ZeldaDictionary</string>
+    <string name="action_settings">Settings</string>
+    <string name="game_list_fragment_label">Game List Fragment</string>
+    <string name="game_detail_fragment_label">Game Detail Fragment</string>
+
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="lorem_ipsum">a</string>
+
+    <string name="default_transition_name">shared_element</string>
+
+    <string name="description_no_info">No Data</string>
+
+    <string name="language_model_download_success">言語モデルをダウンロードしました</string>
+    <string name="top_image_content_description">メイン画像</string>
+    <string name="back_arrow_content_description">戻る</string>
+    <string name="tool_bar_title">Zelda Dictionary</string>
+    <string name="staff_list_title">Staff List</string>
+
+</resources>

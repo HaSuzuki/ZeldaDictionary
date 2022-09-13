@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/gameListFragment">
+
+    <fragment
+        android:id="@+id/gameListFragment"
+        android:name="com.suzukiha.zeldadictionary.ui.GameListFragment"
+        android:label="@string/game_list_fragment_label"
+        tools:layout="@layout/fragment_game_list">
+
+        <action
+            android:id="@+id/action_game_list_to_game_detail"
+            app:destination="@id/gameDetailFragment"
+            app:exitAnim="@null" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/gameDetailFragment"
+        android:name="com.suzukiha.zeldadictionary.ui.GameDetailFragment"
+        android:label="@string/game_detail_fragment_label"
+        tools:layout="@layout/fragment_game_detail">
+        <argument
+            android:name="gameId"
+            app:argType="long" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="thumbnailUrl"
+            app:argType="string"
+            app:nullable="true" />
+
+        <action
+            android:id="@+id/detail_to_staff_worked_on_list"
+            app:destination="@id/bottomSheet"
+            app:exitAnim="@null" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/bottomSheet"
+        android:name="com.suzukiha.zeldadictionary.ui.WorkedOnFragment"
+        tools:layout="@layout/fragment_worked_on_sheet">
+        <argument
+            android:name="staff"
+            app:argType="com.suzukiha.zeldadictionary.model.Staff" />
+    </dialog>
+</navigation>
