@@ -13,9 +13,7 @@ ZeldaDictionary displays content from Information about the Zelda series of game
 
 ## Screenshots
 
-![Screenshot showing For You GameList](docs/images/gamelist.png "Screenshot showing For You GameList")
-![Screenshot showing For You GameDetail](docs/images/gamedetail.png "Screenshot showing For You GameDetail")
-![Screenshot showing For You StaffList](docs/images/stafflist.png "Screenshot showing For You StaffList")
+<img src="docs/images/gamelist.png" width="200px"> <img src="docs/images/gamedetail.png" width="200px"> <img src="docs/images/stafflist.png" width="200px">
 
 # Architecture
 
