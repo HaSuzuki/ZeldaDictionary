@@ -9,7 +9,13 @@ ZeldaDictionary is a part of functional Android app built entirely with Kotlin a
 
 # Features
 
+ZeldaDictionary displays content from Information about the Zelda series of games and the staff involved.
+
 ## Screenshots
+
+![Screenshot showing For You GameList](docs/images/gamelist.png "Screenshot showing For You GameList")
+![Screenshot showing For You GameDetail](docs/images/gamedetail.png "Screenshot showing For You GameDetail")
+![Screenshot showing For You StaffList](docs/images/stafflist.png "Screenshot showing For You StaffList")
 
 # Architecture
 
