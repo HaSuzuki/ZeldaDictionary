@@ -29,11 +29,12 @@ import com.suzukiha.zeldadictionary.util.DURATION_SHORT
 import com.suzukiha.zeldadictionary.util.SpringItemAnimator
 import com.suzukiha.zeldadictionary.util.updateAppbarInsets
 import com.suzukiha.zeldadictionary.viewmodel.GameListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-
+@AndroidEntryPoint
 class GameListFragment : Fragment() {
 
     private var _binding: FragmentGameListBinding? = null
@@ -78,8 +79,7 @@ class GameListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        viewModel.fetchGamesFromApi(page = viewModel.currentPage())
-        viewModel.fetchGamesFromFirestore()
+        fetchGameList()
         binding.swipeRefreshLayout.let {
             it.setColorSchemeColors(
                 ContextCompat.getColor(requireContext(), R.color.primary),
@@ -88,20 +88,14 @@ class GameListFragment : Fragment() {
             it.setOnRefreshListener {
                 viewModel.setCurrentPage(page = "0")
                 viewModel.isLastPage = false
-//                viewModel.fetchGamesFromApi(
-//                    page = viewModel.currentPage()
-//                )
-                viewModel.fetchGamesFromFirestore()
+                fetchGameList()
             }
         }
 
         binding.list.addOnScrollListener(object : PagingScrollListener(linearLayoutManager) {
             override fun loadMoreItems() {
                 viewModel.isLoading = true
-//                viewModel.fetchGamesFromApi(
-//                    page = viewModel.currentPage()
-//                )
-                viewModel.fetchGamesFromFirestore()
+                fetchGameList()
             }
 
             override fun isLastPage(): Boolean {
@@ -252,6 +246,11 @@ class GameListFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun fetchGameList() {
+        viewModel.fetchGamesFromFirestore()
+//            viewModel.fetchGamesFromApi(page = viewModel.currentPage())
     }
 }
 

@@ -214,7 +214,9 @@ private class MaterialContainerTransitionDrawable(
         } else {
             lerp(scrimAlpha, 0, progress)
         }
-        if (scrimPaint.alpha > 0) canvas.drawRect(bounds, scrimPaint)
+        if (scrimPaint.alpha > 0) {
+            canvas.drawRect(bounds, scrimPaint)
+        }
 
         val cornerRadii = lerp(
             startRadii,

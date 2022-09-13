@@ -28,8 +28,10 @@ import com.suzukiha.zeldadictionary.databinding.FragmentWorkedOnSheetBinding
 import com.suzukiha.zeldadictionary.model.Game
 import com.suzukiha.zeldadictionary.util.SpringItemAnimator
 import com.suzukiha.zeldadictionary.viewmodel.WorkedOnViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class WorkedOnFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentWorkedOnSheetBinding? = null

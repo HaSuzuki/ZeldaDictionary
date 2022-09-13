@@ -1,13 +1,13 @@
 package com.suzukiha.zeldadictionary.ui
 
-import android.graphics.Bitmap
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import androidx.core.content.res.ResourcesCompat
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -17,15 +17,17 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.suzukiha.zeldaapiclient.firestore.ZeldaFirestoreFunctions
 import com.suzukiha.zeldadictionary.R
 import com.suzukiha.zeldadictionary.databinding.FragmentGameDetailBinding
 import com.suzukiha.zeldadictionary.model.Staff
 import com.suzukiha.zeldadictionary.util.*
 import com.suzukiha.zeldadictionary.viewmodel.GameDetailViewModel
+import com.suzukiha.zeldadictionary.ui.GameDetailContent
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
 
+@AndroidEntryPoint
 class GameDetailFragment : Fragment() {
 
     private var _binding: FragmentGameDetailBinding? = null
@@ -56,9 +58,6 @@ class GameDetailFragment : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         _binding = FragmentGameDetailBinding.inflate(inflater, container, false).apply {
-            this.toolbar.setNavigationOnClickListener {
-                findNavController().navigateUp()
-            }
             this.list.apply {
                 itemAnimator = SpringItemAnimator()
                 addItemDecoration(EndSpaceItemDecoration(resources.getDimensionPixelSize(R.dimen.margin_12dp)))
@@ -66,6 +65,25 @@ class GameDetailFragment : Fragment() {
                 layoutManager = linearLayoutManager
             }
         }
+
+        binding.detailContent.apply {
+            setViewCompositionStrategy(
+                ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
+            )
+
+            setContent {
+                MaterialTheme {
+                    GameDetailContent(
+                        gameId = args.gameId,
+                        gameName = args.name,
+                        gameDescription = args.description,
+                        thumbnailUrl = args.thumbnailUrl,
+                        navigation = findNavController()
+                    )
+                }
+            }
+        }
+
         val linearInterpolator = AnimationUtils.loadInterpolator(
             context,
             android.R.interpolator.linear
@@ -80,7 +98,6 @@ class GameDetailFragment : Fragment() {
             duration = DURATION_TINY
             interpolator = linearInterpolator
         }
-        binding.toolbar.updateToolbarInsets()
         postponeEnterTransition(DURATION_SHORT, TimeUnit.MILLISECONDS)
         return binding.root
     }
@@ -89,36 +106,11 @@ class GameDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.fetchStaffsFromFirestore(gameId = args.gameId)
-
-        binding.name.let {
-            it.text = args.name
-            it.contentDescription = args.name
-            if (isEnglish()) {
-                it.typeface = ResourcesCompat.getFont(it.context, R.font.hylia_serif_beta_regular)
-            }
-        }
-        binding.description.let {
-            it.text = args.description
-            it.contentDescription = args.description
-            if (isEnglish()) {
-                it.typeface = ResourcesCompat.getFont(it.context, R.font.hylia_serif_beta_regular)
-            }
-        }
-        args.thumbnailUrl?.let {
-            binding.image.load(it) {
-                crossfade(true)
-                error(R.drawable.dictionary)
-                bitmapConfig(Bitmap.Config.ARGB_8888)
-                allowHardware(false)
-            }
-            binding.image.contentDescription = "${args.name} image"
-        }
         subscribeData()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding.toolbar.setNavigationOnClickListener(null)
         _binding = null
     }
 

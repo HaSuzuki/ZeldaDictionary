@@ -5,6 +5,8 @@ plugins {
     id("com.google.firebase.crashlytics")
     id("com.google.gms.google-services")
     id("kotlin-parcelize")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -36,8 +38,12 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExt.get()
+    }
     buildFeatures {
         viewBinding = true
+        compose = true
     }
 }
 
@@ -52,12 +58,35 @@ dependencies {
     implementation(libs.androidx.swipe.refresh.layout)
     implementation(libs.androidx.splash.screen)
     implementation(libs.coil)
+    implementation(libs.shimmer)
+    implementation(libs.view.binding)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+
+    // Compose
+    implementation(libs.androidx.compose.activity)
+    implementation(libs.androidx.compose.constraint.layout)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.animation)
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.compose.runtime.livedata)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.viewmodel)
+    implementation(libs.androidx.compose.navigation)
+    implementation(libs.androidx.compose.mdc.theme)
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.foundation.layout)
+    implementation(libs.coil.compose)
+
+    // firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics)
     implementation(libs.firebase.firestore)
-    implementation(libs.shimmer)
+
     testImplementation(libs.junit)
+    testImplementation(libs.androidx.compose.junit4)
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.espresso)
 }

@@ -10,15 +10,6 @@
     android:foreground="@drawable/small_item_foreground"
     android:theme="@style/Item">
 
-    <View
-        android:id="@+id/background"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/item_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/thumbnail"
-        app:layout_constraintTop_toTopOf="@id/item_parent" />
-
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/thumbnail"
         android:layout_width="@dimen/image_width"

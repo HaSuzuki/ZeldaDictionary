@@ -39,7 +39,6 @@ class GameListViewModel(
 
     // firestore
     val gamesFromFirestore: LiveData<ZeldaFirestoreFunctions.GamesState> = _zeldaRepository.gamesFromFirestore
-    val staffsFromFirestore: LiveData<ZeldaFirestoreFunctions.StaffState> = _zeldaRepository.staffsFromFirestore
 
     fun fetchGamesFromFirestore() {
         _zeldaRepository.fetchGamesFromFirestore()
