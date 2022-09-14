@@ -19,6 +19,6 @@ jobs:
           bundle install
       - name: run lintKotlinFormat
         run: ./gradlew formatKotlin
-      - uses: reviewdog/action-suggester@1
+      - uses: reviewdog/action-suggester@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
