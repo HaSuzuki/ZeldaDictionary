@@ -148,7 +148,6 @@ class MaterialContainerTransition(
     }
 }
 
-
 private const val scrimAlpha = 102
 private const val containerShadow = 0x1a000000
 private const val containerNoShadow = 0x00000000
@@ -225,7 +224,9 @@ private class MaterialContainerTransitionDrawable(
         )
 
         containerPaint.setShadowLayer(
-            0f, 0f, 0f,
+            0f,
+            0f,
+            0f,
             if (entering) {
                 lerpArgb(containerNoShadow, containerShadow, progress)
             } else {

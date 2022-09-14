@@ -1,0 +1,25 @@
+name: Lint Check
+on:
+  pull_request:
+    branches:
+    - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
+          architecture: 'x64'
+      - name: install danger
+        run: |
+          gem install bundler
+          bundle install
+      - name: run lintKotlinCheck
+        run: ./gradlew lintKotlin
+      - name: run danger
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: danger

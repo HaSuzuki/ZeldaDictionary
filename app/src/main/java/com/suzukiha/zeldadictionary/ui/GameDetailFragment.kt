@@ -123,31 +123,34 @@ class GameDetailFragment : Fragment() {
     }
 
     private fun subscribeData() {
-        viewModel.staffsFromFirestore.observe(viewLifecycleOwner, Observer {
-            if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
-                return@Observer
-            }
-            when (it) {
-                is ZeldaFirestoreFunctions.StaffState.Loading -> {
-
+        viewModel.staffsFromFirestore.observe(
+            viewLifecycleOwner,
+            Observer {
+                if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
+                    return@Observer
                 }
-                is ZeldaFirestoreFunctions.StaffState.Success -> {
-                    val list = arrayListOf<Staff>()
-                    it.staff.forEach { staff ->
-                        list.add(Staff(
-                            id = staff.id.toInt(),
-                            name = viewModel.getTextFromUseLanguage(staff.name),
-                            workedOnGameId = staff.workedOnGameId
-                        ))
+                when (it) {
+                    is ZeldaFirestoreFunctions.StaffState.Loading -> {
                     }
-                    gameDetailAdapter.submitList(list)
-                    startPostponedEnterTransition()
-                }
-                is ZeldaFirestoreFunctions.StaffState.Error -> {
-
+                    is ZeldaFirestoreFunctions.StaffState.Success -> {
+                        val list = arrayListOf<Staff>()
+                        it.staff.forEach { staff ->
+                            list.add(
+                                Staff(
+                                    id = staff.id.toInt(),
+                                    name = viewModel.getTextFromUseLanguage(staff.name),
+                                    workedOnGameId = staff.workedOnGameId
+                                )
+                            )
+                        }
+                        gameDetailAdapter.submitList(list)
+                        startPostponedEnterTransition()
+                    }
+                    is ZeldaFirestoreFunctions.StaffState.Error -> {
+                    }
                 }
             }
-        })
+        )
     }
 }
 

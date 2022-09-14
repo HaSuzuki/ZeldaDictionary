@@ -4,7 +4,6 @@ import com.suzukiha.zeldadictionary.util.sliceLimitList
 import org.junit.Assert
 import org.junit.Test
 
-
 class ListExtTest {
 
     @Test

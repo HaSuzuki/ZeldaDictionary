@@ -14,7 +14,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class WorkedOnViewModel(
-    application: Application,
+    application: Application
 ) : AndroidViewModel(application) {
 
     private val _zeldaRemoteDataSource: ZeldaRemoteDataSource by lazy {

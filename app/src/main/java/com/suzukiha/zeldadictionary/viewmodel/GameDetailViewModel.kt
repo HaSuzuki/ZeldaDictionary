@@ -11,7 +11,7 @@ import com.suzukiha.zeldadictionary.data.ZeldaRepository
 import java.util.*
 
 class GameDetailViewModel(
-    application: Application,
+    application: Application
 ) : AndroidViewModel(application) {
 
     private val _zeldaRemoteDataSource: ZeldaRemoteDataSource by lazy {

@@ -101,7 +101,6 @@ class WorkedOnFragment : BottomSheetDialogFragment() {
                 .collect {
                     when (it) {
                         is ZeldaFirestoreFunctions.GamesState.Loading -> {
-
                         }
                         is ZeldaFirestoreFunctions.GamesState.Success -> {
                             val currentList = workedOnGameListAdapter.currentList.toMutableList()
@@ -118,7 +117,6 @@ class WorkedOnFragment : BottomSheetDialogFragment() {
                             workedOnGameListAdapter.submitList(currentList)
                         }
                         is ZeldaFirestoreFunctions.GamesState.Error -> {
-
                         }
                     }
                 }
@@ -168,4 +166,3 @@ class InsetDivider(
         outRect.bottom = height / 2
     }
 }
-

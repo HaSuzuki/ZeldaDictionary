@@ -11,7 +11,6 @@ import com.google.mlkit.nl.translate.TranslateRemoteModel
 import com.google.mlkit.nl.translate.Translation
 import com.google.mlkit.nl.translate.TranslatorOptions
 
-
 class MainActivityModel(
     application: Application
 ) : AndroidViewModel(application) {

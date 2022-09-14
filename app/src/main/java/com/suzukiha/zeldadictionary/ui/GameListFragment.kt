@@ -33,7 +33,6 @@ import kotlinx.coroutines.launch
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-
 class GameListFragment : Fragment() {
 
     private var _binding: FragmentGameListBinding? = null
@@ -54,7 +53,8 @@ class GameListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         linearLayoutManager =

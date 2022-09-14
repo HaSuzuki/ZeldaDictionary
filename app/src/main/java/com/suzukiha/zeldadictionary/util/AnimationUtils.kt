@@ -79,7 +79,6 @@ fun lerp(
     return lerp(startValue, endValue, (fraction - startFraction) / (endFraction - startFraction))
 }
 
-
 fun lerp(
     startValue: Int,
     endValue: Int,
