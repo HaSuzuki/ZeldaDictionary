@@ -17,9 +17,8 @@ jobs:
         run: |
           gem install bundler
           bundle install
-      - name: run lintKotlinCheck
-        run: ./gradlew lintKotlin
-      - name: run danger
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: danger
+      - name: run lintKotlinFormat
+        run: ./gradlew formatKotlin
+      - uses: reviewdog/action-suggester@1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
