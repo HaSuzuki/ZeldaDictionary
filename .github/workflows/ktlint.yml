@@ -1,17 +1,16 @@
-name: reviewdog
-on: [pull_request]
+name: Lint Check
+on:
+  pull_request:
+    branches:
+    - main
 jobs:
-  ktlint:
-    name: Check Code Quality
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Clone repo
-        uses: actions/checkout@master
+      - uses: actions/checkout@v2
+      - name: run lintKotlinFormat
+        run: ./gradlew formatKotlin
+      - uses: reviewdog/action-suggester@v1
         with:
-          fetch-depth: 1
-      - name: ktlint
-        uses: ScaCap/action-ktlint@master
-        with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review # Change reporter
+          reporter: "github-pr-review"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
