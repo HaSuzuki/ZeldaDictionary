@@ -8,9 +8,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: run lintKotlinFormat
-        run: ./gradlew formatKotlin
-      - uses: reviewdog/action-suggester@v1
-        with:
-          reporter: "github-pr-review"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run KtLint
+        run: ./gradlew lintKotlin
+
+      - name: Collect KtLint Result
+        if: ${{ failure() }}
+        continue-on-error: true
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ./gradlew formatKotlin
+          TMPFILE=$(mktemp)
+          git diff >"${TMPFILE}"
+          ./gradlew lintKotlin || true
+          git stash -u && git stash drop || true
+          curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s
+          ./bin/reviewdog -name="ktlint" -f=diff -f.diff.strip=1 -reporter="github-pr-review" < "${TMPFILE}"
+          cat ${{ github.workspace }}/build/reports/ktlint/main-lint.xml | ./bin/reviewdog -f=checkstyle -name="ktlint" -reporter="github-pr-review" -filter-mode="added" -fail-on-error="false"
+Footer
