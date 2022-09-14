@@ -1,4 +1,4 @@
-![Check Ktlint](https://github.com/HaSuzuki/ZeldaDictionary/actions/workflows/main.yml/badge.svg)
+![Check Ktlint](https://github.com/HaSuzuki/ZeldaDictionary/actions/workflows/ktlint.yml/badge.svg)
 
 ZeldaDictionary App [Work in progress 🚧👷‍♂️]
 ==================
