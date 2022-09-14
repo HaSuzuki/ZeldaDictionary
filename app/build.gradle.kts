@@ -43,7 +43,7 @@ android {
 }
 
 kotlinter {
-    ignoreFailures = false
+    ignoreFailures = true
     reporters = arrayOf("checkstyle", "plain")
     experimentalRules = false
     disabledRules = arrayOf("no-wildcard-imports")
