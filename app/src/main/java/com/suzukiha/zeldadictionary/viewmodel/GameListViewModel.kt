@@ -18,7 +18,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 class GameListViewModel(
-    application: Application,
+    application: Application
 ) : AndroidViewModel(application) {
 
     private val _zeldaRemoteDataSource: ZeldaRemoteDataSource by lazy {

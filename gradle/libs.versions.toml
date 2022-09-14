@@ -14,6 +14,7 @@ firebaseCrashlyticsGradle = "2.9.1"
 gmsGoogleService = "4.3.13"
 junit = "4.13.2"
 kotlin = "1.7.0"
+kotlinter = "3.12.0"
 kotlinxCoroutines = "1.6.3"
 material3 = "1.6.1"
 mlkitTranslate = "17.0.0"
@@ -43,6 +44,7 @@ firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashly
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore-ktx" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+kotlinter = { group = "org.jmailen.gradle", name = "kotlinter-gradle", version.ref = "kotlinter" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 material3 = { group = "com.google.android.material", name = "material", version.ref = "material3" }
 mlkit-translate = { group = "com.google.mlkit", name = "translate", version.ref = "mlkitTranslate" }

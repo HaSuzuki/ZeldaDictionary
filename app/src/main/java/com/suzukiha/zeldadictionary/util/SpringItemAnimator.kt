@@ -44,7 +44,8 @@ class SpringItemAnimator : DefaultItemAnimator() {
                             clearAnimatedValues(holder.itemView)
                         }
                     },
-                    tySpring, aSpring
+                    tySpring,
+                    aSpring
                 )
                 dispatchAddStarting(holder)
                 aSpring.animateToFinalPosition(1f)
@@ -90,5 +91,4 @@ class SpringItemAnimator : DefaultItemAnimator() {
             it.translationY = 0f
         }
     }
-
 }

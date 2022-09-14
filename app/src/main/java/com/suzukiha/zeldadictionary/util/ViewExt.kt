@@ -154,4 +154,3 @@ fun View.updateToolbarInsets() {
         WindowInsetsCompat.CONSUMED
     }
 }
-

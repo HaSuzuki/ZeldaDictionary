@@ -15,10 +15,14 @@ class CornerRounding(
 
 fun CornerRounding.toFloatArray(): FloatArray {
     return floatArrayOf(
-        topLeftRadius, topLeftRadius,
-        topRightRadius, topRightRadius,
-        bottomRightRadius, bottomRightRadius,
-        bottomLeftRadius, bottomLeftRadius
+        topLeftRadius,
+        topLeftRadius,
+        topRightRadius,
+        topRightRadius,
+        bottomRightRadius,
+        bottomRightRadius,
+        bottomLeftRadius,
+        bottomLeftRadius
     )
 }
 

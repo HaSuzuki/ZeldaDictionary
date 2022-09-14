@@ -10,7 +10,11 @@ import com.suzukiha.zeldadictionary.model.Game
 
 class GameListAdapter(
     private val onClickItem: (
-        View, Long, String, String, String?
+        View,
+        Long,
+        String,
+        String,
+        String?
     ) -> Unit
 ) : ListAdapter<Game, GameListViewHolder>(GameDiff) {
 
