@@ -7,11 +7,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Run KtLint
+      # Check out current repository
+      - name: Fetch Sources
+        uses: actions/checkout@v2.4.0
+      # Setup Java 11 environment for the next steps
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: zulu
+          java-version: 11
+          cache: gradle
+      - name: Run ktLint
         run: ./gradlew lintKotlin
 
-      - name: Collect KtLint Result
+      - name: Collect ktLint Result
         if: ${{ failure() }}
         continue-on-error: true
         env:
