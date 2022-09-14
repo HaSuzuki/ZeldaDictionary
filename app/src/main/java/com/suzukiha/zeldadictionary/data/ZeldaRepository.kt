@@ -220,6 +220,7 @@ class ZeldaRepository(
         )
     }
 
+
     companion object {
         private const val COLLECTION_PATH_GAME = "games"
         private const val COLLECTION_PATH_STAFF = "staffs"
