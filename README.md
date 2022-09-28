@@ -3,7 +3,7 @@
 ZeldaDictionary App [Work in progress 🚧👷‍♂️]
 ==================
 
-This app was designed by reading the [architecture](https://developer.android.com/topic/libraries/architecture) and [offline-first](https://developer.android.com/topic/architecture/data-layer/offline-first) learning journeys.**
+This app was designed by reading the [architecture](https://developer.android.com/topic/libraries/architecture) and [offline-first](https://developer.android.com/topic/architecture/data-layer/offline-first).
 
 This is the repository for the Dictionary of the Zelda series so far.
 
